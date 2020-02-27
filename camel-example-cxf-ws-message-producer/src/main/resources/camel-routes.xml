@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="
+         http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean class="org.apache.camel.component.cxf.transport.CamelTransportFactory" lazy-init="false">
+        <property name="camelContext" ref="AccountPlayground"/>
+        <property name="transportIds">
+            <list>
+                <value>http://cxf.apache.org/transports/camel</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="producer" class="org.apache.camel.example.util.MessageProducer"/>
+
+    <camelContext id="AccountPlayground" xmlns="http://camel.apache.org/schema/spring">
+
+        <route>
+            <from uri="jetty:http://localhost:8080/servizi/AccountGreeterPort"/>
+            <to uri="direct:accountGreeterImpl"/>
+        </route>
+
+        <route>
+            <from uri="direct:greeter"/>
+            <transform>
+                <simple>Hello to you ${body.name} ${body.surname}</simple>
+            </transform>
+        </route>
+
+        <route>
+            <from uri="direct:greeterlog"/>
+            <log message="Received ${body}"/>
+        </route>
+
+    </camelContext>
+
+    <jaxws:endpoint id="account-greeter-impl"
+                    implementor="#implementoraccountGreeter"
+                    address="camel://direct:accountGreeterImpl"/>
+
+    <bean id="implementoraccountGreeter" class="org.apache.camel.example.service.AccountGreeterImpl">
+        <property name="producer" ref="producer"/>
+    </bean>
+
+
+</beans>

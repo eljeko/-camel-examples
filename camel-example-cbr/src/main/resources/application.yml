@@ -1,0 +1,26 @@
+camel:
+  springboot:
+    # The Camel context name
+    name: CamelRestSql
+  component:
+    servlet:
+      mapping:
+        enabled: true
+        context-path: /cbr/*
+
+# Binding health checks to a different port
+management:
+  port: 8081
+
+# management endpoints
+endpoints:
+  enabled: false
+  health:
+    enabled: true
+  shutdown:
+    sensitive: false
+    enabled: true
+    
+applicationapi:
+#  host: xxx
+  host: localhost:8080

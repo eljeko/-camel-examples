@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://apache.org/account" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="AccountService" targetNamespace="http://apache.org/account">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://apache.org/account" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://apache.org/account">
+  <xs:element name="findAccount" type="tns:findAccount"/>
+  <xs:element name="findAccountResponse" type="tns:findAccountResponse"/>
+  <xs:element name="ping" type="tns:ping"/>
+  <xs:element name="pingResponse" type="tns:pingResponse"/>
+  <xs:complexType name="findAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accountRequest" type="tns:accountRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="accountRequest">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAccountResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accountResponse" type="tns:AccountRespone"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountRespone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="account" type="tns:Account"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Account">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="surname" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ping">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ping" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="pingResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="accountException" type="tns:accountException"/>
+  <xs:complexType name="accountException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="findAccountResponse">
+    <wsdl:part element="tns:findAccountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAccount">
+    <wsdl:part element="tns:findAccount" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccountException">
+    <wsdl:part element="tns:accountException" name="AccountException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ping">
+    <wsdl:part element="tns:ping" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pingResponse">
+    <wsdl:part element="tns:pingResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AccountServiceImpl">
+    <wsdl:operation name="findAccount">
+      <wsdl:input message="tns:findAccount" name="findAccount">
+    </wsdl:input>
+      <wsdl:output message="tns:findAccountResponse" name="findAccountResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AccountException" name="AccountException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ping">
+      <wsdl:input message="tns:ping" name="ping">
+    </wsdl:input>
+      <wsdl:output message="tns:pingResponse" name="pingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccountServiceSoapBinding" type="tns:AccountServiceImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findAccount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findAccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AccountException">
+        <soap:fault name="AccountException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ping">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ping">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pingResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AccountService">
+    <wsdl:port binding="tns:AccountServiceSoapBinding" name="AccountPort">
+      <soap:address location=""/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
