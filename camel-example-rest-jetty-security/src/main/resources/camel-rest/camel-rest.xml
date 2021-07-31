@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rests xmlns="http://camel.apache.org/schema/spring">
+    <restConfiguration component="servlet"/>
+
+    <rest>
+        <get id="root" produces="application/json" uri="/">
+            <to uri="direct:root"/>
+        </get>
+        
+        <get id="key" produces="application/json" uri="/select/{customer.key}">
+            <to uri="direct:getAccountSummary"/>
+        </get>
+
+    </rest>
+</rests>
