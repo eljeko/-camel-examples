@@ -6,7 +6,7 @@
 
 # Curl with authentication
 
-curl  --user jhon:p4ssw0rd  http://localhost:8282/api/select/12313123
+curl  --user jhon:p4ssw0rd  http://localhost:8080/api/select/12313123
 
 # Curl swagger
 
