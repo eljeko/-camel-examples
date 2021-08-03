@@ -3,6 +3,7 @@ package org.apache.camel.example;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.example.model.Account;
 import org.apache.camel.example.model.AccountSummary;
+import org.apache.camel.example.processors.AuthorizationProcessor;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.stereotype.Component;
@@ -31,7 +32,8 @@ public class CamelRouter extends RouteBuilder {
                 .bindingMode(RestBindingMode.off);
 
         from("direct:getAccountSummary")
-                //.log("Current user is: ${in.headers.currentuser}")
+                .process(new AuthorizationProcessor())
+                .log("Current user is: ${in.headers.currentuser}")
                 .process(exchange-> {
                     AccountSummary accountSummary = new AccountSummary();
                     Account account = new Account();
