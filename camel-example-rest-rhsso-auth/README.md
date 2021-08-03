@@ -61,8 +61,14 @@ keycloak.securityConstraints[0].authRoles[0] = user
 keycloak.securityConstraints[0].securityCollections[0].name = secure api
 keycloak.securityConstraints[0].securityCollections[0].patterns[0] = /camel/select/*
 ```
+                      
+# Setup with RHSSO 
 
-# Setup RHSSO
+
+1. Download and start RHSSO
+2. As ```admin``` import the realm file  located in ```realm/demo-realm.json```
+
+# Setup RHSSO manually
 
 1. Download and tun a RHSSO istance 
 2. Setup and admin user
