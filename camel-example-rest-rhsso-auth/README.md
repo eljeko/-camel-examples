@@ -81,10 +81,10 @@ keycloak.securityConstraints[0].securityCollections[0].patterns[0] = /camel/sele
 
 To test the setup go to url  [http://localhost:8282/camel/select/12313123](http://localhost:8282/camel/select/12313123)
 
-You should be redirect to RHSSO, then login with:
+You should be redirected to RHSSO, then login with:
 
-user: jhon
-password: 123456
+* user: jhon
+* password: 123456
 
 After login you'll be redirected to the original url with this json document:
 
