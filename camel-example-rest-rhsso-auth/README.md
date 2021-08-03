@@ -64,7 +64,6 @@ keycloak.securityConstraints[0].securityCollections[0].patterns[0] = /camel/sele
                       
 # Setup with RHSSO 
 
-
 1. Download and start RHSSO
 2. As ```admin``` import the realm file  located in ```realm/demo-realm.json```
 
@@ -77,5 +76,18 @@ keycloak.securityConstraints[0].securityCollections[0].patterns[0] = /camel/sele
 5. Create a client ```demoapp`` and Configure the redirect uri for this client
 5. Create a user for the realm
 6. Create role ```user``` in the realm ```demorealm```
+
+# Test
+
+To test the setup go to url  [http://localhost:8282/camel/select/12313123](http://localhost:8282/camel/select/12313123)
+
+You should be redirect to RHSSO, then login with:
+
+user: jhon
+password: 123456
+
+After the login you'll be redirected to the original url with this json document:
+
+```{"account":{"name":"Jhon","surname":"Green"}}```
 
 
