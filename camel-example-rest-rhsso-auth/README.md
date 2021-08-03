@@ -73,7 +73,7 @@ keycloak.securityConstraints[0].securityCollections[0].patterns[0] = /camel/sele
 2. Setup and admin user
 3. Login as admin in Keycloack
 4. Create a realm ```demorealm```
-5. Create a client ```demoapp`` and Configure the redirect uri for this client
+5. Create a client ```demoapp``` and Configure the redirect uri for this client
 5. Create a user for the realm
 6. Create role ```user``` in the realm ```demorealm```
 
