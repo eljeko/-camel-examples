@@ -86,7 +86,7 @@ You should be redirect to RHSSO, then login with:
 user: jhon
 password: 123456
 
-After the login you'll be redirected to the original url with this json document:
+After login you'll be redirected to the original url with this json document:
 
 ```{"account":{"name":"Jhon","surname":"Green"}}```
 
